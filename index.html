@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="A kinetic neon survival game for keyboard and touch." />
+    <meta name="theme-color" content="#05060a" />
+    <title>Neon Drift // Protocol</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305060a'/%3E%3Cpath d='M12 45 32 8l20 37-20-8Z' fill='%236dffb8' stroke='%23e9fff4' stroke-width='3'/%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="game" aria-label="Neon Drift game arena"></canvas>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="flash" id="flash" aria-hidden="true"></div>
+
+    <header class="hud hud--top" aria-label="Game status">
+      <a class="brand" href="https://github.com/surajshetty09/neon-drift-protocol" target="_blank" rel="noreferrer">
+        <span class="brand-glyph">N/D</span>
+        <span><b>NEON DRIFT</b><small>PROTOCOL_09</small></span>
+      </a>
+
+      <div class="wave-block">
+        <span>THREAT LEVEL</span>
+        <div class="threat-meter" id="threat-meter" aria-label="Threat level">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <strong id="wave-label">WAVE 01</strong>
+      </div>
+
+      <button class="sound-button" id="sound-button" aria-label="Toggle sound" aria-pressed="true">
+        <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        SOUND ON
+      </button>
+    </header>
+
+    <aside class="hud hud--left">
+      <div class="readout">
+        <span>SCORE</span>
+        <strong id="score">000000</strong>
+      </div>
+      <div class="readout readout--combo">
+        <span>SYNC CHAIN</span>
+        <strong id="combo">×1</strong>
+        <div class="combo-track"><i id="combo-fill"></i></div>
+      </div>
+    </aside>
+
+    <aside class="hud hud--right">
+      <div class="shield-pips" id="shield-pips" aria-label="Shield integrity">
+        <span>SHIELD</span>
+        <div><i></i><i></i><i></i></div>
+      </div>
+      <div class="dash-readout">
+        <span>DASH</span>
+        <div class="dash-ring" id="dash-ring"><b>READY</b></div>
+      </div>
+    </aside>
+
+    <div class="mission" id="mission">COLLECT SIGNALS · AVOID HUNTERS</div>
+
+    <section class="overlay is-visible" id="start-overlay">
+      <div class="overlay-grid" aria-hidden="true"></div>
+      <div class="title-lockup">
+        <div class="kicker">UNLICENSED LIGHTCRAFT SIMULATION</div>
+        <h1><span>NEON</span><br />DRIFT</h1>
+        <div class="title-meta">
+          <span>PROTOCOL / 09</span>
+          <span>ENDLESS SURVIVAL</span>
+        </div>
+      </div>
+
+      <div class="briefing">
+        <p>
+          The grid is collapsing. Chain signal cores to stabilize your score.
+          Hunters learn your line—break it with a phase dash.
+        </p>
+        <div class="controls">
+          <div><kbd>WASD</kbd><span>MOVE</span></div>
+          <div><kbd>SHIFT</kbd><span>PHASE DASH</span></div>
+          <div><kbd>P</kbd><span>PAUSE</span></div>
+        </div>
+        <button class="launch-button" id="launch-button">
+          <span>INITIALIZE RUN</span>
+          <i aria-hidden="true">→</i>
+        </button>
+        <small>TOUCH CONTROLS ACTIVATE AUTOMATICALLY</small>
+      </div>
+    </section>
+
+    <section class="overlay result-overlay" id="result-overlay" aria-live="polite">
+      <div class="result-card">
+        <div class="kicker">RUN TERMINATED</div>
+        <h2>SIGNAL<br />LOST</h2>
+        <div class="result-stats">
+          <div><span>FINAL SCORE</span><strong id="final-score">000000</strong></div>
+          <div><span>BEST CHAIN</span><strong id="best-chain">×1</strong></div>
+          <div><span>WAVE REACHED</span><strong id="final-wave">01</strong></div>
+        </div>
+        <button class="launch-button" id="restart-button"><span>RUN IT BACK</span><i>↻</i></button>
+      </div>
+    </section>
+
+    <section class="pause-card" id="pause-card" aria-live="polite">
+      <span>PROTOCOL SUSPENDED</span>
+      <b>PAUSED</b>
+      <small>PRESS P TO RESUME</small>
+    </section>
+
+    <div class="touch-ui" id="touch-ui" aria-hidden="true">
+      <div class="joystick" id="joystick"><i id="joystick-knob"></i></div>
+      <button class="dash-button" id="dash-button">DASH</button>
+    </div>
+
+    <footer>
+      <span>MOVE FAST / STAY LIT</span>
+      <span id="fps-label">SYSTEM NOMINAL</span>
+      <span>BUILD 2026.10</span>
+    </footer>
+
+    <script src="game.js"></script>
+  </body>
+</html>
